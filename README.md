@@ -2,7 +2,7 @@
 Dieses Repository enthält den Code für die automatische Erkennung von Vorhofflimmern aus kurzen EKG-Segmenten mittels Deep Learning. Diese Arbeit wurde im Rahmen des Wettbewerbs "Wettbewerb künstliche Intelligenz in der Medizin" an der TU Darmstadt (KIS*MED, Prof. Hoog Antink) durchgeführt.
 
 ## Erste Schritte
-Die erforderlichen packages können aus der [`requirements.txt`](https://github.com/Orbitery/Herzenssache_Abgabe/blob/main/Files/requirements.txt) Datei entnommen werden.
+Die erforderlichen packages können aus der [`requirements.txt`](https://github.com/Orbitery/Herzenssache_Finale_Abgabe/blob/main/requirements.txt) Datei entnommen werden.
 ### Installation
 Die erforderlichen Abhängigkeiten können mit dem folgenden Befehl installiert werden:
 ```
@@ -50,11 +50,11 @@ Für ein erfolgreiches benutzerdefiniertes Training wird die Verwendung des Trai
 
 
 Die Dateien
- - [`predict_pretrained.pyy`](https://github.com/Orbitery/Herzenssache_Abgabe/blob/main/Files/predict_pretrained.py)
- - [`wettbewerb.py`](https://github.com/Orbitery/Herzenssache_Abgabe/blob/main/Files/wettbewerb.py)
- - [`score.py`](https://github.com/Orbitery/Herzenssache_Abgabe/blob/main/Files/score.py)
+ - [`predict_pretrained.pyy`](https://github.com/Orbitery/Herzenssache_Finale_Abgabe/blob/main/predict_pretrained.py)
+ - [`wettbewerb.py`](https://github.com/Orbitery/Herzenssache_Finale_Abgabe/blob/main/wettbewerb.py)
+ - [`score.py`](https://github.com/Orbitery/Herzenssache_Finale_Abgabe/blob/score.py)
 
-stammen aus dem Repository [18-ha-2010-pj](https://github.com/KISMED-TUDa/18-ha-2010-pj) von [Maurice Rohr](https://github.com/MauriceRohr) und [Prof. Hoog Antink](https://github.com/hogius). Die Funktion `predict_labels` in [`predict.py`](https://github.com/Orbitery/Herzenssache_Abgabe/blob/main/Files/predict.py) beinhaltet das folgende Interface, welches für die Evaluierung verwendet wird.
+stammen aus dem Repository [18-ha-2010-pj](https://github.com/KISMED-TUDa/18-ha-2010-pj) von [Maurice Rohr](https://github.com/MauriceRohr) und [Prof. Hoog Antink](https://github.com/hogius). Die Funktion `predict_labels` in [`predict.py`](https://github.com/Orbitery/Herzenssache_Finale_Abgabe/blob/main/predict.py) beinhaltet das folgende Interface, welches für die Evaluierung verwendet wird.
 
 `predict_labels(ecg_leads : List[np.ndarray], fs : float, ecg_names : List[str], model_name : str='model.npy',is_binary_classifier : bool=False) -> List[Tuple[str,str]]`
 
