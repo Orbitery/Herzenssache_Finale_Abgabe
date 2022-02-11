@@ -22,6 +22,7 @@ Das CNN wurde nach der Architektur von Xuexiang Xuand und Hongxing Liu [3] entwi
 Resnet:
 Das Resnet wurde nach der Idee von Sanne de Roever [1] und mit Teilen des Codes von [3] entwickelt.
 
+Als bester Klassifikator hat sich das ResNet-Model gezeigt.
 Binäres Problem:
 - python `predict_pretrained.py` `--model_name` `Resnet` `--is_binary_classifier` `True`
 
