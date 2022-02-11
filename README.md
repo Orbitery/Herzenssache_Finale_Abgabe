@@ -1,23 +1,97 @@
-# 18-ha-2010-pj
-Demo-Code zum Projektseminar "Wettbewerb künstliche Intelligenz in der Medizin" WiSe 2021/2022. Das Beispiel definiert gleichzeitig das Interface zu unserem Evaluierungs-System.
+# Herzenssache_Abgabe
+Dieses Repository enthält den Code für die automatische Erkennung von Vorhofflimmern aus kurzen EKG-Segmenten mittels Deep Learning. Diese Arbeit wurde im Rahmen des Wettbewerbs "Wettbewerb künstliche Intelligenz in der Medizin" an der TU Darmstadt (KIS*MED, Prof. Hoog Antink) durchgeführt.
 
 ## Erste Schritte
+Die erforderlichen packages können aus der [`requirements.txt`](https://github.com/Orbitery/Herzenssache_Abgabe/blob/main/Files/requirements.txt) Datei entnommen werden.
+### Installation
+Die erforderlichen Abhängigkeiten können mit dem folgenden Befehl installiert werden:
+```
+git clone xyz
+cd Herzenssache_finale_Abgabe
+pip install -r requirements.txt -f 
 
-1. Klone/Forke dieses Repository
-2. Richte ein eigenes Repository auf github/gitlab ein. Darüber könnt ihr später die Abgaben eurer Modelle machen.
-3. Python Environment anlegen (z.B. mit Anaconda), dann kann "requirements.txt" mit `pip install -r requirements.txt` ausgeführt werden und installiert die notwendigen Pakete 
+cd ../../../
+```
+## Funktionen
 
-## Wichtig!
+Insgesamt bietet unser Code folgende Modelle zur Auswahl:
 
-Die Dateien 
-- predict_pretrained.py
-- wettbewerb.py
-- score.py
+- CNN
+- LSTM
+- ResNet
+- Random Forrest
+- XGBoost 
 
-werden von uns beim testen auf den ursprünglichen Stand zurückgesetzt. Es ist deshalb nicht empfehlenswert diese zu verändern. In predict.py ist für die Funktion `predict_labels` das Interface festgelegt, das wir für die Evaluierung verwenden.
+Vor jedem Modell lässt sich optional eine Hauptkomponentenanalyse davorschalten, um die Features zu reduzieren und ggfs. die Trainingszeit zu verringern.  
+
+CNN:
+Das CNN wurde nach der Architektur von Xuexiang Xuand und Hongxing Liu [3] entwickelt.  
+
+Resnet:
+Das Resnet wurde nach der Idee von Sanne de Roever [1] und mit Teilen des Codes von [3] entwickelt.
+
+Binäres Problem:
+- python `predict_pretrained.py` `--model_name` `Resnet` `--is_binary_classifier` `True`
+
+Multi-Class Problem:
+- python `predict_pretrained.py` `--model_name` `Resnet` `--is_binary_classifier` `False`
+
+
+Für ein erfolgreiches benutzerdefiniertes Training wird die Verwendung des Trainingsskripts train.py empfohlen. Hierfür werden folgende Befehle benötigt:
+
+| Argument | Default  Value | Info |
+| --- | --- | --- |
+| `--modelname` | Resnet | Auswahl von verschiedenen Modellen anhand von Modellname. |
+| `--bin` | True | Binäre Darstellung. Unterscheidung zwischen binärer Klassifizierer und Multilabel. |
+| `--pca_active` | False | Binäre Darstellung. Option, ob Hauptkomponentenanalyse verwendet wird oder nicht. |
+| `--epochs` | 10 | Anzahl von Epochen beim Traininieren des Modells. |
+| `--batch_size` | 512 | Gibt die Batchsize zum Trainieren des Modells an. |
+| `--treesize` | 50 | Gibt die Anzahl der Bäume des RandomForrest an |
+
+
+Die Dateien
+ - [`predict_pretrained.pyy`](https://github.com/Orbitery/Herzenssache_Abgabe/blob/main/Files/predict_pretrained.py)
+ - [`wettbewerb.py`](https://github.com/Orbitery/Herzenssache_Abgabe/blob/main/Files/wettbewerb.py)
+ - [`score.py`](https://github.com/Orbitery/Herzenssache_Abgabe/blob/main/Files/score.py)
+
+stammen aus dem Repository [18-ha-2010-pj](https://github.com/KISMED-TUDa/18-ha-2010-pj) von [Maurice Rohr](https://github.com/MauriceRohr) und [Prof. Hoog Antink](https://github.com/hogius). Die Funktion `predict_labels` in [`predict.py`](https://github.com/Orbitery/Herzenssache_Abgabe/blob/main/Files/predict.py) beinhaltet das folgende Interface, welches für die Evaluierung verwendet wird.
 
 `predict_labels(ecg_leads : List[np.ndarray], fs : float, ecg_names : List[str], model_name : str='model.npy',is_binary_classifier : bool=False) -> List[Tuple[str,str]]`
 
-Insbesondere den `model_name` könnt ihr verwenden um bei der Abgabe verschiedene Modelle zu kennzeichnen, welche zum Beispiel durch eure Ordnerstruktur dargestellt werden. Der Parameter `is_binary_classifier` ermöglicht es zu entscheiden, ob mit dem Modell nur die zwei Hauptlabels "Atrial Fibrillation ['A']" und "Normal ['N']" klassfiziert werden (binärer Klassifikator), oder alle vier Label.
+In `model_name` sind die Modelle CNN, LSTM, Random Forest, XGBoost & ResNet enthalten.
 
-Bitte gebt alle verwendeten packages in "requirements.txt" bei der Abgabe zur Evaluation an und testet dies vorher in einer frischen Umgebung mit `pip install -r requirements.txt`. Als Basis habt ihr immer die vorgegebene "requirements.txt"-Datei. Wir selbst verwenden Python 3.8. Wenn es ein Paket gibt, welches nur unter einer anderen Version funktioniert ist das auch in Ordung. In dem Fall bitte Python-Version mit angeben.
+## Daten
+
+Die Daten für das Training so wie die Auswertung der Modelle wurden aus dem Repository [18-ha-2010-pj](https://github.com/KISMED-TUDa/18-ha-2010-pj) von 
+[Maurice Rohr](https://github.com/MauriceRohr) und [Prof. Hoog Antink](https://github.com/hogius) verwendet. Weitere Trainingsdaten stammen aus dem PTB-XL-EKG-Datensatz, welche von Wissenschaftlerinnen und Wissenschaftler des Fraunhofer Heinrich-Hertz-Instituts (HHI) und der Physikalisch-Technischen Bundesanstalt (PTB) [hier](https://www.physionet.org/content/ptb-xl/1.0.1/) veröffentlich wurden.
+
+## Verweise
+
+```
+[1] Resnet Ansatz: {De Roever 2020,
+        Titel={{Using ResNet for ECG time-series data}},
+        Autor={Sanne de Roever},
+        Veröffentlichung={https://towardsdatascience.com/using-resnet-for-time-series-data-4ced1f5395e3, Aufruf:12.01.2022},
+        Jahr={2020},
+}
+```
+
+```
+[2] Resnet Architektur: {De Roever 2020,
+        Titel={{Replication study of "ECG Heartbeat Classification: A Deep Transferable Representation}},
+        Autor={Sanne de Roever},
+        Veröffentlichung={https://github.com/spdrnl/ecg/blob/master/ECG.ipynb, Aufruf:12.01.2022},
+        Jahr={2020}
+}
+```
+
+```
+[3] CNN Ansatz: {Liu 2017,
+        Titel={{ECG Heartbeat Classification UsingConvolutional Neural Networks}},
+        Autor={Xuexiang Xuand, Hongxing Liu},
+        Veröffentlichung={IEEE Access (Volume:8)},
+        Seiten={8614-8619},
+        Jahr={2020},
+        Organisation={IEEE}
+}
+```
