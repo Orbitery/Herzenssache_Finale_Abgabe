@@ -63,7 +63,8 @@ In `model_name` sind die Modelle CNN, LSTM, Random Forest, XGBoost & ResNet enth
 ## Daten
 
 Die Daten für das Training so wie die Auswertung der Modelle wurden aus dem Repository [18-ha-2010-pj](https://github.com/KISMED-TUDa/18-ha-2010-pj) von 
-[Maurice Rohr](https://github.com/MauriceRohr) und [Prof. Hoog Antink](https://github.com/hogius) verwendet. Weitere Trainingsdaten stammen aus dem PTB-XL-EKG-Datensatz, welche von Wissenschaftlerinnen und Wissenschaftler des Fraunhofer Heinrich-Hertz-Instituts (HHI) und der Physikalisch-Technischen Bundesanstalt (PTB) [hier](https://www.physionet.org/content/ptb-xl/1.0.1/) veröffentlich wurden.
+[Maurice Rohr](https://github.com/MauriceRohr) und [Prof. Hoog Antink](https://github.com/hogius) verwendet. Weitere Trainingsdaten stammen aus dem PTB-XL-EKG-Datensatz, welche von Wissenschaftlerinnen und Wissenschaftler des Fraunhofer Heinrich-Hertz-Instituts (HHI) und der Physikalisch-Technischen Bundesanstalt (PTB) [hier](https://www.physionet.org/content/ptb-xl/1.0.1/) veröffentlich wurden. Ferner besteht die Möglichkeit den Icentia11k [hier](https://academictorrents.com/details/af04abfe9a3c96b30e5dd029eb185e19a7055272) zum Training zu nutzen. 
+Für die vortrainierten Modelle wurde ein zusammengesetzter Trainingsdatensatz, bestehend aus den gegebenen Trainingsdaten der Challenge und des PTB-XL-EKG-Datensatzes erstellt. 
 
 ## Verweise
 
