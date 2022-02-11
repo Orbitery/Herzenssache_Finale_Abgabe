@@ -7,8 +7,7 @@ mysql-connector-python==8.0.26
 sklearn==0.0
 tensorflow==2.7.0
 keras==2.7.0
-pickle
-joblib
-xgboost
+joblib==1.1.0 
+xgboost==1.5.2
 
 
