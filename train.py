@@ -28,7 +28,7 @@ parser = argparse.ArgumentParser(description='Train given Model')
 parser.add_argument('--modelname', action='store',type=str,default='Resnet')
 parser.add_argument('--bin', action='store',type=str,default='True')
 parser.add_argument('--pca_active', action='store',type=str,default="False")
-parser.add_argument('--epochs', action='store',type=int,default="2")
+parser.add_argument('--epochs', action='store',type=int,default="10")
 parser.add_argument('--batchsize', action='store',type=int,default="512")
 parser.add_argument('--treesize', action='store',type=int,default=50)
 
